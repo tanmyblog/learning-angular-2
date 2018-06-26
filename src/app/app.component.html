@@ -1,2 +1,6 @@
 <h1>welcome to {{ title }}!</h1>
-<my-tutorial></my-tutorial>
+
+<p>Agree number: {{agree}}. Disgree: {{disgree}}</p>
+<button (click)="changeName()">Change Name</button>
+
+<my-tutorial *ngFor="let person of names" [name]="person" (onVote)="parentVote($event)"></my-tutorial>

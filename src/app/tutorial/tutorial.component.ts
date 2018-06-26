@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-@Component ({
+@Component({
     selector: 'my-tutorial',
     template: `
-        <h3>{{title}}</h3>
-        <button (click)="OnClick(name.value)">Click Me</button>
-        <input type="text" #name />
+        <h3>Child Component: {{name}}</h3>
+
+        <button [disabled]="voted" (click)="vote(true)">Agree</button>
+        <button [disabled]="voted" (click)="vote(false)">Disgree</button>
+        Result: {{voted}}
     `,
     styles: [`
         
@@ -13,9 +15,17 @@ import { Component } from '@angular/core';
 })
 
 export class TutorialComponent {
-    public title = 'Hello world';
+    @Input() name: string;
+    @Output() onVote = new EventEmitter<boolean>();
 
-    OnClick (value) {
-        console.log(value);
+    public voted: boolean = false;
+
+    setName(name: string) {
+        this.name = name;
+    }
+
+    vote(agree: boolean) {
+        this.voted = true;
+        this.onVote.emit(agree);
     }
 }

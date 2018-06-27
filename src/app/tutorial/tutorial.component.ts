@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class TutorialComponent {
-    onSubmit(value:any){
+    onSubmit(value: any) {
         console.log(value);
     }
+
+    public cities = [{ Id: 1, Name: 'HCM' }, { Id: 2, Name: 'HaNoi' }];
 }
